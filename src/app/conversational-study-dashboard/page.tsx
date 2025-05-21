@@ -385,7 +385,7 @@ export default function ConversationalStudyDashboard() {
                         
                         {/* Tooltip with count */}
                         <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black text-white text-xs rounded py-1 px-2 pointer-events-none bottom-full left-1/2 transform -translate-x-1/2 mb-1">
-                          <div>Mentions: {word.count}</div>
+                          <div>Valeur: {word.count}</div>
                           <div>Poids: {word.weight}%</div>
                         </div>
                       </motion.div>
@@ -417,7 +417,7 @@ export default function ConversationalStudyDashboard() {
                           <XAxis dataKey="name" tick={{ fontSize: 10 }} />
                           <YAxis tick={{ fontSize: 10 }} />
                           <Tooltip />
-                          <Bar dataKey="value" fill={theme.color} animationDuration={1500} />
+                          <Bar dataKey="value" name="Valeur" fill={theme.color} animationDuration={1500} />
                         </BarChart>
                       </ResponsiveContainer>
                     ) : (
@@ -432,6 +432,7 @@ export default function ConversationalStudyDashboard() {
                             outerRadius={80}
                             fill="#8884d8"
                             dataKey="value"
+                            nameKey="name"
                             animationDuration={1500}
                             animationBegin={0}
                           >
