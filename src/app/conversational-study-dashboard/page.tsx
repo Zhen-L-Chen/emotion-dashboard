@@ -17,7 +17,12 @@ const themes = [
     tension: 0.9,
     responseLength: 85,
     color: "#ef4444",
-    lexicon: ["trop cher", "inutile", "pas confiance", "faux bio"],
+    lexicon: [
+      { text: "trop cher", weight: 100 },
+      { text: "inutile", weight: 75 },
+      { text: "pas confiance", weight: 60 },
+      { text: "faux bio", weight: 40 }
+    ],
     verbatims: [
       "Je ne vois pas la différence de goût, c'est du marketing.",
       "C'est trop cher pour ce que c'est, ça me frustre.",
@@ -55,7 +60,12 @@ const themes = [
     tension: 0.8,
     responseLength: 65,
     color: "#fbbf24",
-    lexicon: ["naturel", "transformé", "chimique", "marketing"],
+    lexicon: [
+      { text: "naturel", weight: 100 },
+      { text: "transformé", weight: 80 },
+      { text: "chimique", weight: 60 },
+      { text: "marketing", weight: 40 }
+    ],
     verbatims: [
       "C'est difficile de croire que le lait puisse être bio, c'est contradictoire.",
       "Bio ou pas, ça reste un produit industriel et transformé.",
@@ -92,7 +102,12 @@ const themes = [
     tension: 0.2,
     responseLength: 45,
     color: "#22c55e",
-    lexicon: ["essayer", "offre", "preuve", "dégustation"],
+    lexicon: [
+      { text: "essayer", weight: 100 },
+      { text: "offre", weight: 80 },
+      { text: "preuve", weight: 60 },
+      { text: "dégustation", weight: 40 }
+    ],
     verbatims: [
       "Une dégustation pourrait me convaincre.",
       "S'il y avait une promo, je l'essaierais."
@@ -128,7 +143,12 @@ const themes = [
     tension: 0.3,
     responseLength: 70,
     color: "#3b82f6",
-    lexicon: ["déjà goûté", "déçu", "agréable", "aucun effet"],
+    lexicon: [
+      { text: "déjà goûté", weight: 100 },
+      { text: "déçu", weight: 75 },
+      { text: "agréable", weight: 50 },
+      { text: "aucun effet", weight: 30 }
+    ],
     verbatims: [
       "Je l'ai déjà goûté, ce n'était pas mauvais.",
       "J'ai arrêté, je n'ai pas vu de différence."
@@ -163,7 +183,12 @@ const themes = [
     tension: 0.1,
     responseLength: 95,
     color: "#8b5cf6",
-    lexicon: ["valeurs", "cohérent", "engagé", "responsable"],
+    lexicon: [
+      { text: "valeurs", weight: 100 },
+      { text: "cohérent", weight: 80 },
+      { text: "engagé", weight: 60 },
+      { text: "responsable", weight: 40 }
+    ],
     verbatims: [
       "Je choisis bio parce que ça correspond à mes valeurs.",
       "J'essaie d'acheter responsable autant que possible."
@@ -199,7 +224,12 @@ const themes = [
     tension: 0.7,
     responseLength: 55,
     color: "#14b8a6",
-    lexicon: ["lait d'amande", "écologie", "remplacement", "moins gras"],
+    lexicon: [
+      { text: "lait d'amande", weight: 100 },
+      { text: "écologie", weight: 75 },
+      { text: "remplacement", weight: 50 },
+      { text: "moins gras", weight: 30 }
+    ],
     verbatims: [
       "J'utilise maintenant du lait d'avoine, plus léger et moins problématique.",
       "Je pense que les laits végétaux sont plus écologiques et cohérents.",
@@ -255,7 +285,7 @@ export default function ConversationalStudyDashboard() {
       </div>
       <div className="mt-12"></div>
       <h1 className="text-3xl font-bold text-center text-black font-serif mb-8">
-        Thème conversationnel - Lait Bio du Québec
+        Thème conversationnel - lait bio du Québec
       </h1>
 
       {/* Main content - Themes on left, Theme card on right */}
@@ -275,7 +305,7 @@ export default function ConversationalStudyDashboard() {
                   console.log("Setting theme to:", theme.id);
                   setSelectedTheme(theme.id);
                 }}
-                style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}
+                style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.05)', height: '60px' }}
               >
                 <div 
                   className="w-4 h-4 rounded-full mr-2" 
@@ -308,8 +338,15 @@ export default function ConversationalStudyDashboard() {
                 <strong className="text-black text-sm">Lexique émotionnel :</strong>
                 <div className="flex flex-wrap gap-2 mt-1">
                   {theme.lexicon.map((word, i) => (
-                    <span key={i} className="px-2 py-1 bg-amber-100 text-black rounded-full text-xs">
-                      {word}
+                    <span 
+                      key={i} 
+                      className="px-2 py-1 text-black rounded-full text-xs"
+                      style={{ 
+                        backgroundColor: `rgba(254, 243, 199, ${word.weight / 100})`,
+                        fontWeight: word.weight > 70 ? 'bold' : 'normal'
+                      }}
+                    >
+                      {word.text}
                     </span>
                   ))}
                 </div>
