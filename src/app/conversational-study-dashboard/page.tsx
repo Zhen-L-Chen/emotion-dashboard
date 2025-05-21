@@ -336,19 +336,59 @@ export default function ConversationalStudyDashboard() {
               </div>
               <div className="mt-2">
                 <strong className="text-black text-sm">Lexique émotionnel :</strong>
-                <div className="flex flex-wrap gap-2 mt-1">
-                  {theme.lexicon.map((word, i) => (
-                    <span 
-                      key={i} 
-                      className="px-2 py-1 text-black rounded-full text-xs"
-                      style={{ 
-                        backgroundColor: `rgba(254, 243, 199, ${word.weight / 100})`,
-                        fontWeight: word.weight > 70 ? 'bold' : 'normal'
-                      }}
-                    >
-                      {word.text}
-                    </span>
-                  ))}
+                <div className="flex flex-wrap gap-4 mt-3">
+                  {theme.lexicon.map((word, i) => {
+                    // Calculate size based on weight (from 0.9 to 1.2)
+                    const sizeScale = 0.9 + (word.weight / 100) * 0.3;
+                    // Calculate color intensity based on weight
+                    const hue = theme.color.startsWith('#') ? theme.color : '#fbbf24';
+                    
+                    return (
+                      <motion.div 
+                        key={`${selectedTheme}-${i}`} 
+                        className="relative px-3 py-1.5 rounded-full flex items-center cursor-help"
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        animate={{ 
+                          scale: sizeScale, 
+                          opacity: 1,
+                        }}
+                        transition={{ 
+                          duration: 0.5, 
+                          delay: i * 0.1 + 0.2,
+                        }}
+                        style={{ 
+                          fontSize: `${sizeScale}rem`,
+                          fontWeight: word.weight > 60 ? 'bold' : 'normal',
+                          border: '1px solid rgba(0,0,0,0.1)',
+                          boxShadow: word.weight > 70 ? '0 1px 2px rgba(0,0,0,0.1)' : 'none',
+                          color: 'black',
+                          overflow: 'hidden'
+                        }}
+                        whileHover={{ scale: sizeScale * 1.05 }}
+                      >
+                        {/* Background fill animation */}
+                        <motion.div 
+                          key={`fill-${selectedTheme}-${i}`}
+                          className="absolute inset-0 rounded-full"
+                          initial={{ width: '0%' }}
+                          animate={{ width: '100%' }}
+                          transition={{ duration: 1, delay: i * 0.1 + 0.5 }}
+                          style={{ 
+                            backgroundColor: `${hue}${Math.round((word.weight / 100) * 99)}`,
+                            zIndex: -1
+                          }}
+                        />
+                        
+                        {/* Word text */}
+                        <span className="z-10">{word.text}</span>
+                        
+                        {/* Tooltip with count */}
+                        <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black text-white text-xs rounded py-1 px-2 pointer-events-none bottom-full left-1/2 transform -translate-x-1/2 mb-1">
+                          Poids: {word.weight}%
+                        </div>
+                      </motion.div>
+                    );
+                  })}
                 </div>
               </div>
               <div className="mt-3">
