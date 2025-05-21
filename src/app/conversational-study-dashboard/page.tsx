@@ -18,10 +18,10 @@ const themes = [
     responseLength: 85,
     color: "#ef4444",
     lexicon: [
-      { text: "trop cher", weight: 100 },
-      { text: "inutile", weight: 75 },
-      { text: "pas confiance", weight: 60 },
-      { text: "faux bio", weight: 40 }
+      { text: "trop cher", weight: 100, count: 42 },
+      { text: "inutile", weight: 75, count: 31 },
+      { text: "pas confiance", weight: 60, count: 25 },
+      { text: "faux bio", weight: 40, count: 17 }
     ],
     verbatims: [
       "Je ne vois pas la différence de goût, c'est du marketing.",
@@ -61,10 +61,10 @@ const themes = [
     responseLength: 65,
     color: "#fbbf24",
     lexicon: [
-      { text: "naturel", weight: 100 },
-      { text: "transformé", weight: 80 },
-      { text: "chimique", weight: 60 },
-      { text: "marketing", weight: 40 }
+      { text: "naturel", weight: 100, count: 38 },
+      { text: "transformé", weight: 80, count: 30 },
+      { text: "chimique", weight: 60, count: 23 },
+      { text: "marketing", weight: 40, count: 15 }
     ],
     verbatims: [
       "C'est difficile de croire que le lait puisse être bio, c'est contradictoire.",
@@ -103,10 +103,10 @@ const themes = [
     responseLength: 45,
     color: "#22c55e",
     lexicon: [
-      { text: "essayer", weight: 100 },
-      { text: "offre", weight: 80 },
-      { text: "preuve", weight: 60 },
-      { text: "dégustation", weight: 40 }
+      { text: "essayer", weight: 100, count: 35 },
+      { text: "offre", weight: 80, count: 28 },
+      { text: "preuve", weight: 60, count: 21 },
+      { text: "dégustation", weight: 40, count: 14 }
     ],
     verbatims: [
       "Une dégustation pourrait me convaincre.",
@@ -144,10 +144,10 @@ const themes = [
     responseLength: 70,
     color: "#3b82f6",
     lexicon: [
-      { text: "déjà goûté", weight: 100 },
-      { text: "déçu", weight: 75 },
-      { text: "agréable", weight: 50 },
-      { text: "aucun effet", weight: 30 }
+      { text: "déjà goûté", weight: 100, count: 36 },
+      { text: "déçu", weight: 75, count: 27 },
+      { text: "agréable", weight: 50, count: 18 },
+      { text: "aucun effet", weight: 30, count: 11 }
     ],
     verbatims: [
       "Je l'ai déjà goûté, ce n'était pas mauvais.",
@@ -184,10 +184,10 @@ const themes = [
     responseLength: 95,
     color: "#8b5cf6",
     lexicon: [
-      { text: "valeurs", weight: 100 },
-      { text: "cohérent", weight: 80 },
-      { text: "engagé", weight: 60 },
-      { text: "responsable", weight: 40 }
+      { text: "valeurs", weight: 100, count: 33 },
+      { text: "cohérent", weight: 80, count: 26 },
+      { text: "engagé", weight: 60, count: 20 },
+      { text: "responsable", weight: 40, count: 13 }
     ],
     verbatims: [
       "Je choisis bio parce que ça correspond à mes valeurs.",
@@ -225,10 +225,10 @@ const themes = [
     responseLength: 55,
     color: "#14b8a6",
     lexicon: [
-      { text: "lait d'amande", weight: 100 },
-      { text: "écologie", weight: 75 },
-      { text: "remplacement", weight: 50 },
-      { text: "moins gras", weight: 30 }
+      { text: "lait d'amande", weight: 100, count: 29 },
+      { text: "écologie", weight: 75, count: 22 },
+      { text: "remplacement", weight: 50, count: 15 },
+      { text: "moins gras", weight: 30, count: 9 }
     ],
     verbatims: [
       "J'utilise maintenant du lait d'avoine, plus léger et moins problématique.",
@@ -336,7 +336,7 @@ export default function ConversationalStudyDashboard() {
               </div>
               <div className="mt-2">
                 <strong className="text-black text-sm">Lexique émotionnel :</strong>
-                <div className="flex flex-wrap gap-4 mt-3">
+                <div className="flex flex-wrap gap-6 mt-3">
                   {theme.lexicon.map((word, i) => {
                     // Calculate size based on weight (from 0.9 to 1.2)
                     const sizeScale = 0.9 + (word.weight / 100) * 0.3;
@@ -362,7 +362,8 @@ export default function ConversationalStudyDashboard() {
                           border: '1px solid rgba(0,0,0,0.1)',
                           boxShadow: word.weight > 70 ? '0 1px 2px rgba(0,0,0,0.1)' : 'none',
                           color: 'black',
-                          overflow: 'hidden'
+                          overflow: 'hidden',
+                          margin: '4px 2px'
                         }}
                         whileHover={{ scale: sizeScale * 1.05 }}
                       >
@@ -384,7 +385,8 @@ export default function ConversationalStudyDashboard() {
                         
                         {/* Tooltip with count */}
                         <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black text-white text-xs rounded py-1 px-2 pointer-events-none bottom-full left-1/2 transform -translate-x-1/2 mb-1">
-                          Poids: {word.weight}%
+                          <div>Mentions: {word.count}</div>
+                          <div>Poids: {word.weight}%</div>
                         </div>
                       </motion.div>
                     );
