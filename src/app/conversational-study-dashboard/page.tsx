@@ -406,44 +406,51 @@ export default function ConversationalStudyDashboard() {
               {theme.charts && theme.charts.map((chart, chartIndex) => (
                 <div key={chartIndex} className="mt-6">
                   <h3 className="text-sm font-bold text-black mb-3">{chart.title}</h3>
-                  <div className="h-[250px] w-full">
-                    {chart.type === 'bar' ? (
-                      <ResponsiveContainer width="100%" height="100%">
-                        <BarChart
-                          data={chart.data}
-                          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-                        >
-                          <CartesianGrid strokeDasharray="3 3" />
-                          <XAxis dataKey="name" tick={{ fontSize: 10 }} />
-                          <YAxis tick={{ fontSize: 10 }} />
-                          <Tooltip />
-                          <Bar dataKey="value" name="Valeur" fill={theme.color} animationDuration={1500} />
-                        </BarChart>
-                      </ResponsiveContainer>
-                    ) : (
-                      <ResponsiveContainer width="100%" height="100%">
-                        <PieChart>
-                          <Pie
+                  <div>
+                    <div className="h-[250px] w-full">
+                      {chart.type === 'bar' ? (
+                        <ResponsiveContainer width="100%" height="100%">
+                          <BarChart
                             data={chart.data}
-                            cx="50%"
-                            cy="50%"
-                            labelLine={false}
-                            label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                            outerRadius={80}
-                            fill="#8884d8"
-                            dataKey="value"
-                            nameKey="name"
-                            animationDuration={1500}
-                            animationBegin={0}
+                            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                           >
-                            {chart.data.map((entry, index) => (
-                              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                            ))}
-                          </Pie>
-                          <Tooltip />
-                        </PieChart>
-                      </ResponsiveContainer>
-                    )}
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" tick={{ fontSize: 10 }} />
+                            <YAxis tick={{ fontSize: 10 }} />
+                            <Tooltip />
+                            <Bar dataKey="value" name="Valeur" fill={theme.color} animationDuration={1500} />
+                          </BarChart>
+                        </ResponsiveContainer>
+                      ) : (
+                        <ResponsiveContainer width="100%" height="100%">
+                          <PieChart>
+                            <Pie
+                              data={chart.data}
+                              cx="50%"
+                              cy="50%"
+                              labelLine={false}
+                              label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                              outerRadius={80}
+                              fill="#8884d8"
+                              dataKey="value"
+                              nameKey="name"
+                              animationDuration={1500}
+                              animationBegin={0}
+                            >
+                              {chart.data.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                              ))}
+                            </Pie>
+                            <Tooltip />
+                          </PieChart>
+                        </ResponsiveContainer>
+                      )}
+                    </div>
+                    <p className="text-xs text-gray-600 mt-2 italic">
+                      {chart.type === 'bar' 
+                        ? "Ce graphique montre la distribution des valeurs par catégorie, permettant de comparer facilement leur importance relative."
+                        : "Ce graphique illustre la répartition proportionnelle des différentes catégories, montrant leur importance relative dans l'ensemble."}
+                    </p>
                   </div>
                 </div>
               ))}
