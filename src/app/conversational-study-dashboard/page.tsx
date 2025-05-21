@@ -243,7 +243,7 @@ export default function ConversationalStudyDashboard() {
 
   return (
     <div className="min-h-screen bg-[#f5f0e6] p-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-      <div className="absolute top-4 left-4" style={{ width: '120px', height: '40px', position: 'relative' }}>
+      <div className="absolute top-4 left-4" style={{ width: '150px', height: '50px', position: 'relative' }}>
         <Image 
           src="/paperminds_logo_small.png" 
           alt="Paperminds Logo" 
@@ -381,7 +381,6 @@ export default function ConversationalStudyDashboard() {
         <div className="absolute top-[40%] right-2 text-xs text-black/50">Valence ↔</div>
 
         {themes.map((theme, i) => {
-          const size = 30 + theme.responseLength * 0.7;
           const left = `${50 + (theme.valence / maxValence) * 45}%`;
           const top = `${50 - (theme.tension / maxTension) * 45}%`;
 
@@ -390,8 +389,8 @@ export default function ConversationalStudyDashboard() {
               key={theme.id}
               className="absolute flex items-center justify-center text-center cursor-pointer group"
               style={{
-                width: size,
-                height: size,
+                width: 60,
+                height: 60,
                 borderRadius: "50%",
                 aspectRatio: "1 / 1",
                 left,
