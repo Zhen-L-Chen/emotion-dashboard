@@ -688,7 +688,7 @@ export default function PTLiteDashboard() {
                       <motion.div 
                         key={`verbatim-${selectedDimension}-${i}`}
                         className={`relative p-3 bg-white rounded-lg border shadow-sm ${
-                          verbatim.flag === 'intra-dissonance' ? 'border-red-300 bg-red-50' : 'border-gray-200'
+                          (verbatim as any).flag === 'intra-dissonance' ? 'border-red-300 bg-red-50' : 'border-gray-200'
                         }`}
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -696,7 +696,7 @@ export default function PTLiteDashboard() {
                       >
                         {/* Participant ID and Warning in top-right corner */}
                         <div className="absolute top-2 right-2 flex items-center gap-1">
-                          {verbatim.flag === 'intra-dissonance' && (
+                          {(verbatim as any).flag === 'intra-dissonance' && (
                             <span className="text-red-500 text-xs" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
                               ⚠
                             </span>
