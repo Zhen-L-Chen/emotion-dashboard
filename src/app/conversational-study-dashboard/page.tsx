@@ -272,31 +272,33 @@ export default function ConversationalStudyDashboard() {
   const maxTension = 1;
 
   return (
-    <div className="min-h-screen bg-[#f5f0e6] p-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-      <div className="absolute top-4 left-4" style={{ width: '150px', height: '50px', position: 'relative' }}>
-        <Image 
-          src="/paperminds_logo_small.png" 
-          alt="Paperminds Logo" 
-          fill
-          sizes="120px"
-          priority
-          style={{ objectFit: 'contain' }}
-        />
+    <div className="min-h-screen bg-[#f5f0e6] p-4 sm:p-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+      <div className="relative w-full flex justify-center sm:justify-start mb-6 sm:mb-0">
+        <div className="relative w-[120px] h-[40px] sm:w-[150px] sm:h-[50px] sm:absolute sm:top-4 sm:left-4">
+          <Image 
+            src="/paperminds_logo_small.png" 
+            alt="Paperminds Logo" 
+            fill
+            sizes="(max-width: 640px) 120px, 150px"
+            priority
+            style={{ objectFit: 'contain' }}
+          />
+        </div>
       </div>
-      <div className="mt-12"></div>
-      <h1 className="text-3xl font-bold text-center text-black font-serif mb-8">
+      <div className="mt-4 sm:mt-12"></div>
+      <h1 className="text-2xl sm:text-3xl font-bold text-center text-black font-serif mb-6 sm:mb-8">
         Thème conversationnel - lait bio du Québec
       </h1>
 
       {/* Main content - Themes on left, Theme card on right */}
-      <div className="flex flex-col md:flex-row gap-8 max-w-6xl mx-auto">
+      <div className="flex flex-col lg:flex-row gap-4 sm:gap-8 max-w-6xl mx-auto">
         {/* Themes list on the left */}
-        <div className="md:w-1/4 p-4">
-          <div className="flex flex-col gap-3 sticky top-4">
+        <div className="lg:w-1/4 p-2 sm:p-4">
+          <div className="flex flex-row lg:flex-col gap-2 sm:gap-3 overflow-x-auto pb-2 lg:pb-0 lg:sticky lg:top-4">
             {themes.map((theme) => (
               <div 
                 key={theme.id} 
-                className={`flex items-center cursor-pointer px-4 py-3 rounded-lg border transition-all duration-200 hover:bg-gray-100 hover:scale-105 ${
+                className={`flex-shrink-0 lg:flex-shrink flex items-center cursor-pointer px-3 sm:px-4 py-2 sm:py-3 rounded-lg border transition-all duration-200 hover:bg-gray-100 hover:scale-105 ${
                   selectedTheme === theme.id 
                     ? 'border-gray-500 bg-gray-100 scale-105' 
                     : 'border-gray-300'
@@ -305,13 +307,18 @@ export default function ConversationalStudyDashboard() {
                   console.log("Setting theme to:", theme.id);
                   setSelectedTheme(theme.id);
                 }}
-                style={{ boxShadow: '0 1px 2px rgba(0,0,0,0.05)', height: '60px' }}
+                style={{ 
+                  boxShadow: '0 1px 2px rgba(0,0,0,0.05)', 
+                  height: '50px',
+                  minWidth: '180px',
+                  width: 'auto'
+                }}
               >
                 <div 
-                  className="w-4 h-4 rounded-full mr-2" 
+                  className="w-3 h-3 sm:w-4 sm:h-4 rounded-full mr-2" 
                   style={{ backgroundColor: theme.color + 'cc', aspectRatio: "1 / 1" }}
                 />
-                <span className="text-sm font-medium text-black">{theme.name}</span>
+                <span className="text-xs sm:text-sm font-medium text-black whitespace-nowrap">{theme.name}</span>
                 {theme.tension > 0.5 && <span className="ml-1 text-red-500 text-xs">⚠</span>}
               </div>
             ))}
@@ -319,24 +326,24 @@ export default function ConversationalStudyDashboard() {
         </div>
 
         {/* Theme card on the right */}
-        <div className="md:w-3/4 p-4">
+        <div className="lg:w-3/4 p-2 sm:p-4">
           {themes.map((theme) => (
             <motion.div
               key={theme.id}
               layout
-              className={`bg-[#f5f0e6] border-2 border-gray-400 rounded-xl shadow p-5 transition-all duration-300 ${
+              className={`bg-[#f5f0e6] border-2 border-gray-400 rounded-xl shadow p-3 sm:p-5 transition-all duration-300 ${
                 selectedTheme === theme.id ? 'opacity-100 scale-100' : 'hidden'
               }`}
             >
-              <div className="flex justify-between items-center">
-                <h2 className="text-lg font-bold text-black">{theme.name}</h2>
-                <div className="text-sm text-gray-600">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
+                <h2 className="text-base sm:text-lg font-bold text-black mb-1 sm:mb-0">{theme.name}</h2>
+                <div className="text-xs sm:text-sm text-gray-600">
                   Valence: {theme.valence > 0 ? "+" : ""}{theme.valence.toFixed(1)} | Tension: {theme.tension.toFixed(1)}
                 </div>
               </div>
               <div className="mt-2">
-                <strong className="text-black text-sm">Lexique émotionnel :</strong>
-                <div className="flex flex-wrap gap-6 mt-3">
+                <strong className="text-black text-xs sm:text-sm">Lexique émotionnel :</strong>
+                <div className="flex flex-wrap gap-3 sm:gap-6 mt-2 sm:mt-3">
                   {theme.lexicon.map((word, i) => {
                     // Calculate size based on weight (from 0.9 to 1.2)
                     const sizeScale = 0.9 + (word.weight / 100) * 0.3;
@@ -346,7 +353,7 @@ export default function ConversationalStudyDashboard() {
                     return (
                       <motion.div 
                         key={`${selectedTheme}-${i}`} 
-                        className="relative px-3 py-1.5 rounded-full flex items-center cursor-help"
+                        className={`relative px-3 py-1.5 rounded-full flex items-center cursor-help text-sm sm:text-base`}
                         initial={{ scale: 0.9, opacity: 0 }}
                         animate={{ 
                           scale: sizeScale, 
@@ -357,7 +364,6 @@ export default function ConversationalStudyDashboard() {
                           delay: i * 0.1 + 0.2,
                         }}
                         style={{ 
-                          fontSize: `${sizeScale}rem`,
                           fontWeight: word.weight > 60 ? 'bold' : 'normal',
                           border: '1px solid rgba(0,0,0,0.1)',
                           boxShadow: word.weight > 70 ? '0 1px 2px rgba(0,0,0,0.1)' : 'none',
@@ -394,8 +400,8 @@ export default function ConversationalStudyDashboard() {
                 </div>
               </div>
               <div className="mt-3">
-                <strong className="text-black text-sm">Verbatims clés :</strong>
-                <ul className="list-disc list-inside text-gray-700 text-sm mt-1 space-y-1">
+                <strong className="text-black text-xs sm:text-sm">Verbatims clés :</strong>
+                <ul className="list-disc list-inside text-gray-700 text-xs sm:text-sm mt-1 space-y-1">
                   {theme.verbatims.map((v, i) => (
                     <li key={i}>"{v}"</li>
                   ))}
@@ -404,10 +410,10 @@ export default function ConversationalStudyDashboard() {
               
               {/* Charts Section */}
               {theme.charts && theme.charts.map((chart, chartIndex) => (
-                <div key={chartIndex} className="mt-6">
-                  <h3 className="text-sm font-bold text-black mb-3">{chart.title}</h3>
+                <div key={chartIndex} className="mt-4 sm:mt-6">
+                  <h3 className="text-xs sm:text-sm font-bold text-black mb-2 sm:mb-3">{chart.title}</h3>
                   <div>
-                    <div className="h-[250px] w-full">
+                    <div className="h-[200px] sm:h-[250px] w-full">
                       {chart.type === 'bar' ? (
                         <ResponsiveContainer width="100%" height="100%">
                           <BarChart
@@ -446,7 +452,7 @@ export default function ConversationalStudyDashboard() {
                         </ResponsiveContainer>
                       )}
                     </div>
-                    <p className="text-xs text-gray-600 mt-2 italic">
+                    <p className="text-[10px] sm:text-xs text-gray-600 mt-1 sm:mt-2 italic">
                       {chart.type === 'bar' 
                         ? "Ce graphique montre la distribution des valeurs par catégorie, permettant de comparer facilement leur importance relative."
                         : "Ce graphique illustre la répartition proportionnelle des différentes catégories, montrant leur importance relative dans l'ensemble."}
@@ -460,12 +466,12 @@ export default function ConversationalStudyDashboard() {
       </div>
 
       {/* Big Graph at the bottom */}
-      <div className="relative w-full h-[400px] border border-black/10 rounded-xl mt-12 mb-8 bg-[#f5f0e6] max-w-5xl mx-auto">
+      <div className="relative w-full h-[300px] sm:h-[400px] border border-black/10 rounded-xl mt-8 sm:mt-12 mb-6 sm:mb-8 bg-[#f5f0e6] max-w-5xl mx-auto">
         <div className="absolute left-1/2 top-0 h-full w-0.5 bg-black/10" />
         <div className="absolute top-1/2 left-0 w-full h-0.5 bg-black/10" />
-        <div className="absolute top-2 left-2 text-xs text-black/50">Tension élevée ↑</div>
-        <div className="absolute bottom-2 left-2 text-xs text-black/50">Tension faible ↓</div>
-        <div className="absolute top-[40%] right-2 text-xs text-black/50">Valence ↔</div>
+        <div className="absolute top-2 left-2 text-[10px] sm:text-xs text-black/50">Tension élevée ↑</div>
+        <div className="absolute bottom-2 left-2 text-[10px] sm:text-xs text-black/50">Tension faible ↓</div>
+        <div className="absolute top-[40%] right-2 text-[10px] sm:text-xs text-black/50">Valence ↔</div>
 
         {themes.map((theme, i) => {
           const left = `${50 + (theme.valence / maxValence) * 45}%`;
@@ -476,8 +482,8 @@ export default function ConversationalStudyDashboard() {
               key={theme.id}
               className="absolute flex items-center justify-center text-center cursor-pointer group"
               style={{
-                width: 60,
-                height: 60,
+                width: 'clamp(40px, 10vw, 60px)',
+                height: 'clamp(40px, 10vw, 60px)',
                 borderRadius: "50%",
                 aspectRatio: "1 / 1",
                 left,
@@ -497,7 +503,7 @@ export default function ConversationalStudyDashboard() {
               }}
             >
               <div
-                className="absolute whitespace-nowrap bg-black/70 text-white px-2 py-1 rounded text-xs pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                className="absolute whitespace-nowrap bg-black/70 text-white px-2 py-1 rounded text-[10px] sm:text-xs pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200"
                 style={{ top: '100%', marginTop: '8px' }}
               >
                 {theme.name}
