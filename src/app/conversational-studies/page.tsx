@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { 
-  Zap, 
+  MessageSquare, 
   ArrowLeft,
   Calendar,
   Users,
@@ -17,18 +17,13 @@ import {
 } from 'lucide-react';
 import Footer from '../components/Footer';
 
-export default function PTLite() {
+export default function ConversationalStudies() {
   const [userEmail, setUserEmail] = useState('');
   const [dateFilter, setDateFilter] = useState('all');
   const router = useRouter();
 
   useEffect(() => {
-    // For testing purposes, we'll bypass the login check
-    // and set a default email
-    setUserEmail('zhen@paperminds.ai');
-    
-    // Uncomment the code below to enable login check
-    /*
+    // Check if user is logged in
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     const email = localStorage.getItem('userEmail');
     
@@ -38,7 +33,6 @@ export default function PTLite() {
     }
 
     setUserEmail(email);
-    */
   }, [router]);
 
   const handleLogout = () => {
@@ -50,40 +44,40 @@ export default function PTLite() {
 
   const studies = [
     {
-      id: 'volkswagen-campaign',
-      name: 'Volkswagen Campaign',
-      description: 'Pre-test of the new Volkswagen ID.BUZZ electric vehicle campaign targeting eco-conscious families and nostalgic millennials.',
-      status: 'active',
-      startDate: '2025-05-10',
-      endDate: '2025-06-10',
-      participants: 350,
-      completion: 75,
-      route: '/ptlite-dashboard',
-      lastActivity: '1 hour ago'
-    },
-    {
-      id: 'creative-validation',
-      name: 'Creative Validation',
-      description: 'Validation testing for new creative concepts across multiple product categories to determine market readiness.',
+      id: 'lait-bio',
+      name: 'Lait Bio Study',
+      description: 'Understanding consumer perception of organic dairy products and brand positioning in the health-conscious market segment.',
       status: 'completed',
-      startDate: '2025-04-15',
-      endDate: '2025-05-25',
-      participants: 280,
+      startDate: '2025-05-01',
+      endDate: '2025-06-15',
+      participants: 450,
       completion: 100,
-      route: '/ptlite-dashboard',
-      lastActivity: '5 days ago'
+      route: '/conversational-study-dashboard',
+      lastActivity: '3 days ago'
     },
     {
-      id: 'summer-campaign',
-      name: 'Summer Campaign',
-      description: 'Testing of summer promotional materials for effectiveness, emotional resonance, and brand alignment before launch.',
+      id: 'product-research',
+      name: 'Product Research',
+      description: 'Deep dive into customer needs and preferences for next-generation product development initiatives.',
       status: 'active',
-      startDate: '2025-05-20',
-      endDate: '2025-06-20',
-      participants: 210,
-      completion: 40,
-      route: '/ptlite-dashboard',
-      lastActivity: '3 hours ago'
+      startDate: '2025-04-01',
+      endDate: '2025-07-20',
+      participants: 320,
+      completion: 65,
+      route: '/product-research-dashboard',
+      lastActivity: '2 hours ago'
+    },
+    {
+      id: 'market-analysis',
+      name: 'Market Analysis',
+      description: 'Comprehensive analysis of market trends, competitor positioning, and consumer behavior patterns.',
+      status: 'active',
+      startDate: '2025-05-15',
+      endDate: '2025-08-01',
+      participants: 280,
+      completion: 45,
+      route: '/market-analysis-dashboard',
+      lastActivity: '1 hour ago'
     }
   ];
 
@@ -158,14 +152,14 @@ export default function PTLite() {
           
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center">
-                <Zap className="w-6 h-6 text-amber-600" />
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                <MessageSquare className="w-6 h-6 text-blue-600" />
               </div>
               <div>
                 <h1 className="text-3xl font-bold text-gray-900 helvetica-title">
-                  PT Lite™
+                  Conversational Studies™
                 </h1>
-                <p className="text-gray-600">Quick creative testing insights</p>
+                <p className="text-gray-600">Understand what really matters to consumers</p>
               </div>
             </div>
             
@@ -174,7 +168,7 @@ export default function PTLite() {
               <select
                 value={dateFilter}
                 onChange={(e) => setDateFilter(e.target.value)}
-                className="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-8 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                className="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-8 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 <option value="all">All Time</option>
                 <option value="thisMonth">This Month</option>
@@ -191,7 +185,7 @@ export default function PTLite() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-8">
           {/* Left Side - Ongoing Studies */}
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Ongoing Tests</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Ongoing Studies</h2>
             <div className="space-y-6">
               {activeStudies.map((study, index) => (
                 <motion.div
@@ -203,7 +197,7 @@ export default function PTLite() {
                 >
                   {/* Status Badge */}
                   <div className="flex items-center justify-between mb-4">
-                    <span className="px-3 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                    <span className="px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
                       <div className="flex items-center">
                         <PlayCircle className="w-3 h-3 mr-1" />
                         Active
@@ -224,7 +218,7 @@ export default function PTLite() {
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">
                       <div 
-                        className="bg-amber-500 h-2 rounded-full transition-all duration-300"
+                        className="bg-blue-500 h-2 rounded-full transition-all duration-300"
                         style={{ width: `${study.completion}%` }}
                       />
                     </div>
@@ -255,7 +249,7 @@ export default function PTLite() {
 
           {/* Right Side - Completed Studies */}
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Completed Tests</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Completed Studies</h2>
             <div className="space-y-6">
               {completedStudies.map((study, index) => (
                 <motion.div
@@ -265,7 +259,7 @@ export default function PTLite() {
                   transition={{ duration: 0.6, delay: 0.1 * index }}
                   className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all duration-300 cursor-pointer"
                   onClick={() => {
-                    if (study.route === '/ptlite-dashboard') {
+                    if (study.route === '/conversational-study-dashboard') {
                       router.push(study.route);
                     }
                   }}
@@ -313,10 +307,10 @@ export default function PTLite() {
 
                   {/* Action Button */}
                   <button 
-                    className="w-full py-2 px-4 rounded-lg font-medium transition-all bg-amber-500 hover:bg-amber-600 text-white"
+                    className="w-full py-2 px-4 rounded-lg font-medium transition-all bg-blue-500 hover:bg-blue-600 text-white"
                     onClick={(e) => {
                       e.stopPropagation();
-                      if (study.route === '/ptlite-dashboard') {
+                      if (study.route === '/conversational-study-dashboard') {
                         router.push(study.route);
                       }
                     }}
@@ -336,86 +330,23 @@ export default function PTLite() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-12 bg-white rounded-lg border border-gray-200 p-6"
         >
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Test Overview</h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Study Overview</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
-              <div className="text-2xl font-bold text-amber-600">{studies.length}</div>
-              <div className="text-sm text-gray-600">Total Tests</div>
+              <div className="text-2xl font-bold text-blue-600">{studies.length}</div>
+              <div className="text-sm text-gray-600">Total Studies</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-green-600">
                 {studies.filter(s => s.status === 'active').length}
               </div>
-              <div className="text-sm text-gray-600">Active Tests</div>
+              <div className="text-sm text-gray-600">Active Studies</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-gray-600">
                 {studies.reduce((sum, s) => sum + s.participants, 0)}
               </div>
               <div className="text-sm text-gray-600">Total Participants</div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Feature Highlight */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-8 bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg border border-amber-200 p-6"
-        >
-          <div className="flex flex-col md:flex-row items-center gap-6">
-            <div className="md:w-1/2">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Quick Creative Testing</h3>
-              <p className="text-gray-700 mb-4">
-                PT Lite™ provides rapid insights into creative effectiveness across seven key dimensions:
-              </p>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li className="flex items-center">
-                  <span className="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
-                  Message Context
-                </li>
-                <li className="flex items-center">
-                  <span className="w-2 h-2 bg-amber-500 rounded-full mr-2"></span>
-                  Clarity & Comprehension
-                </li>
-                <li className="flex items-center">
-                  <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                  Emotional Resonance
-                </li>
-                <li className="flex items-center">
-                  <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                  Relevance & Identification
-                </li>
-                <li className="flex items-center">
-                  <span className="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
-                  Memorability & Distinctiveness
-                </li>
-                <li className="flex items-center">
-                  <span className="w-2 h-2 bg-teal-500 rounded-full mr-2"></span>
-                  Brand Attribution & Fit
-                </li>
-                <li className="flex items-center">
-                  <span className="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
-                  Improvement
-                </li>
-              </ul>
-            </div>
-            <div className="md:w-1/2 flex justify-center">
-              <div className="relative w-full max-w-xs h-48 rounded-lg overflow-hidden shadow-lg">
-                <Image
-                  src="/volks.png"
-                  alt="PT Lite Example"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                  <div className="p-4 text-white">
-                    <div className="text-xs font-medium">Example Test</div>
-                    <div className="text-sm font-bold">Volkswagen ID.BUZZ Campaign</div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </motion.div>

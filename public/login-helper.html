@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Helper</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        button {
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #e65c00;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login Helper</h1>
+    <p>This page will help you bypass the login process by setting the necessary localStorage items directly.</p>
+    <p>Click the button below to set the localStorage items and then you'll be redirected to the PT Lite page.</p>
+    
+    <button id="loginButton">Set Login State & Go to PT Lite</button>
+    
+    <div id="successMessage" class="success">
+        Login state set successfully! Redirecting to PT Lite page...
+    </div>
+
+    <script>
+        document.getElementById('loginButton').addEventListener('click', function() {
+            // Set localStorage items
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('userEmail', 'zhen@paperminds.ai');
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Redirect to PT Lite page after a short delay
+            setTimeout(function() {
+                window.location.href = '/ptlite';
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

@@ -72,15 +72,15 @@ export default function EmotionalJourneyMap() {
   }, []);
 
   return (
-    <div className="w-full bg-[#f9f5eb] rounded-xl shadow-md p-4 sm:p-6">
-      <h2 className="text-lg sm:text-xl font-semibold text-black mb-1 font-serif">Emotional Journey Map</h2>
+    <div className="w-full bg-[#f9f5eb] rounded-xl shadow-md p-3 sm:p-4 lg:p-6">
+      <h2 className="text-base sm:text-lg lg:text-xl font-semibold text-black mb-1 font-serif">Emotional Journey Map</h2>
       <p className="text-xs sm:text-sm text-gray-700 mb-3">
         This map shows emotional pathways observed in the last 7 days of conversations. Click on a link to explore key transitions.
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-        <div className="col-span-1 md:col-span-2">
-          <div className="h-[300px] sm:h-[400px] md:h-[500px]">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4 mb-4">
+        <div className="col-span-1 lg:col-span-2">
+          <div className="h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px]">
             <ResponsiveSankey
               data={{ nodes: sankeyNodes, links: sankeyLinks }}
               margin={isMobile 

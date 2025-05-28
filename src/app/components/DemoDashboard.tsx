@@ -380,7 +380,7 @@ export default function DemoDashboard() {
     });
 
   return (
-    <div className="grid grid-cols-1 gap-4 p-4 sm:gap-6 sm:p-6 md:grid-cols-2 xl:grid-cols-3 min-h-screen" 
+    <div className="grid grid-cols-1 gap-3 p-2 sm:gap-4 sm:p-4 md:gap-6 md:p-6 md:grid-cols-2 xl:grid-cols-3 min-h-screen" 
       style={{ 
         background: 'linear-gradient(135deg, #f9f5eb 0%, #f5f0e0 50%, #f9f5eb 100%)',
         fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'

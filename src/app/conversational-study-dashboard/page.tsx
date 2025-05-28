@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import Footer from '../components/Footer';
+import Navigation from '../components/Navigation';
 
 // COLORS
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'];
@@ -263,29 +265,34 @@ const themes = [
 
 export default function ConversationalStudyDashboard() {
   const [selectedTheme, setSelectedTheme] = useState<string | null>("freins");
+  const [userEmail, setUserEmail] = useState('');
+  const [isInsightsUnlocked, setIsInsightsUnlocked] = useState(false);
   
   useEffect(() => {
     console.log("Theme changed to:", selectedTheme);
   }, [selectedTheme]);
 
+  useEffect(() => {
+    // Check if user is logged in and get email
+    const email = localStorage.getItem('userEmail');
+    if (email) {
+      setUserEmail(email);
+    }
+    
+    // Check if insights are unlocked (you can adjust this logic as needed)
+    const hasSeenUnlock = localStorage.getItem('hasSeenInsightsUnlock');
+    if (hasSeenUnlock) {
+      setIsInsightsUnlocked(true);
+    }
+  }, []);
+
   const maxValence = 2;
   const maxTension = 1;
 
   return (
-    <div className="min-h-screen bg-[#f5f0e6] p-4 sm:p-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-      <div className="relative w-full flex justify-center sm:justify-start mb-6 sm:mb-0">
-        <div className="relative w-[120px] h-[40px] sm:w-[150px] sm:h-[50px] sm:absolute sm:top-4 sm:left-4">
-          <Image 
-            src="/paperminds_logo_small.png" 
-            alt="Paperminds Logo" 
-            fill
-            sizes="(max-width: 640px) 120px, 150px"
-            priority
-            style={{ objectFit: 'contain' }}
-          />
-        </div>
-      </div>
-      <div className="mt-4 sm:mt-12"></div>
+    <div className="min-h-screen bg-[#f5f0e6]" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+      <Navigation userEmail={userEmail} showInsights={isInsightsUnlocked} />
+      <div className="p-3 sm:p-4 lg:p-6">
       <h1 className="text-2xl sm:text-3xl font-bold text-center text-black font-serif mb-6 sm:mb-8">
         Thème conversationnel - lait bio du Québec
       </h1>
@@ -298,27 +305,31 @@ export default function ConversationalStudyDashboard() {
             {themes.map((theme) => (
               <div 
                 key={theme.id} 
-                className={`flex-shrink-0 lg:flex-shrink flex items-center cursor-pointer px-3 sm:px-4 py-2 sm:py-3 rounded-lg border transition-all duration-200 hover:bg-gray-100 hover:scale-105 ${
+                className={`flex-shrink-0 lg:flex-shrink flex items-center cursor-pointer px-3 sm:px-4 py-2 sm:py-3 rounded-lg transition-all duration-200 hover:bg-orange-50 ${
                   selectedTheme === theme.id 
-                    ? 'border-gray-500 bg-gray-100 scale-105' 
-                    : 'border-gray-300'
+                    ? 'shadow-lg' 
+                    : ''
                 }`}
+                style={{ 
+                  boxShadow: selectedTheme === theme.id ? '0 4px 12px rgba(0,0,0,0.15)' : '0 1px 2px rgba(0,0,0,0.05)', 
+                  height: 'auto',
+                  minHeight: '50px',
+                  minWidth: '220px',
+                  width: 'auto',
+                  border: '2px solid #d1d5db',
+                  borderRadius: '8px',
+                  backgroundColor: selectedTheme === theme.id ? theme.color + '20' : 'transparent'
+                }}
                 onClick={() => {
                   console.log("Setting theme to:", theme.id);
                   setSelectedTheme(theme.id);
-                }}
-                style={{ 
-                  boxShadow: '0 1px 2px rgba(0,0,0,0.05)', 
-                  height: '50px',
-                  minWidth: '180px',
-                  width: 'auto'
                 }}
               >
                 <div 
                   className="w-3 h-3 sm:w-4 sm:h-4 rounded-full mr-2" 
                   style={{ backgroundColor: theme.color + 'cc', aspectRatio: "1 / 1" }}
                 />
-                <span className="text-xs sm:text-sm font-medium text-black whitespace-nowrap">{theme.name}</span>
+                <span className="text-xs sm:text-sm font-medium text-black">{theme.name}</span>
                 {theme.tension > 0.5 && <span className="ml-1 text-red-500 text-xs">⚠</span>}
               </div>
             ))}
@@ -489,9 +500,9 @@ export default function ConversationalStudyDashboard() {
                 left,
                 top,
                 transform: "translate(-50%, -50%)",
-                backgroundColor: theme.color + 'cc',
-                border: selectedTheme === theme.id ? "3px solid white" : "none",
-                boxShadow: selectedTheme === theme.id ? "0 0 10px rgba(0,0,0,0.3)" : "none"
+                backgroundColor: selectedTheme === theme.id 
+                  ? theme.color + '40'  // Much lighter version when selected
+                  : theme.color + 'cc', // Original opacity when not selected
               }}
               initial={{ scale: 0.2, opacity: 0 }}
               animate={{ scale: 1, opacity: 0.9 }}
@@ -511,6 +522,9 @@ export default function ConversationalStudyDashboard() {
             </motion.div>
           );
         })}
+      </div>
+      
+        <Footer />
       </div>
     </div>
   );
