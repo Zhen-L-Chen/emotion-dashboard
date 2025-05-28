@@ -43,16 +43,16 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f9f5eb] via-[#f5f0e0] to-[#f9f5eb] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-[#f9f5eb] via-[#f5f0e0] to-[#f9f5eb] flex items-center justify-center p-4 sm:p-6 lg:p-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="w-full max-w-md"
+        className="w-full max-w-sm sm:max-w-md"
       >
         {/* Logo */}
-        <div className="text-center mb-8">
-          <div className="relative w-32 h-12 mx-auto mb-6">
+        <div className="text-center mb-6 sm:mb-8">
+          <div className="relative w-28 h-10 sm:w-32 sm:h-12 mx-auto mb-4 sm:mb-6">
             <Image 
               src="/paperminds_logo_small.png" 
               alt="Paperminds Logo" 
@@ -61,10 +61,10 @@ export default function LoginPage() {
               priority
             />
           </div>
-          <h1 className="text-2xl font-bold text-black mb-2" style={{ fontFamily: 'var(--font-serif)' }}>
+          <h1 className="text-xl sm:text-2xl font-bold text-black mb-2 px-2" style={{ fontFamily: 'var(--font-serif)' }}>
             Welcome to your
           </h1>
-          <p className="text-lg text-black" style={{ fontFamily: 'var(--font-serif)' }}>
+          <p className="text-base sm:text-lg text-black px-2" style={{ fontFamily: 'var(--font-serif)' }}>
             Conversational Intelligence Hub
           </p>
         </div>
@@ -74,9 +74,9 @@ export default function LoginPage() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-white rounded-xl shadow-lg p-8 border border-gray-200"
+          className="bg-white rounded-xl shadow-lg p-6 sm:p-8 border border-gray-200"
         >
-          <form onSubmit={handleLogin} className="space-y-6">
+          <form onSubmit={handleLogin} className="space-y-5 sm:space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-black mb-2">
                 Email
@@ -86,7 +86,7 @@ export default function LoginPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all text-black"
+                className="w-full px-3 sm:px-4 py-3 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all text-black text-base"
                 placeholder="Enter your email"
                 required
               />
@@ -101,7 +101,7 @@ export default function LoginPage() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all text-black"
+                className="w-full px-3 sm:px-4 py-3 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all text-black text-base"
                 placeholder="Enter your password"
                 required
               />

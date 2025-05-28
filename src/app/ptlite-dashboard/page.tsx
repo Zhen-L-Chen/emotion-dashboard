@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import Footer from '../components/Footer';
+import Navigation from '../components/Navigation';
 
 // COLORS
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'];
@@ -261,11 +263,27 @@ export default function PTLiteDashboard() {
   const [selectedDimension, setSelectedDimension] = useState<string | null>("message-context");
   const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(null);
   const [playingAudio, setPlayingAudio] = useState<string | null>(null);
+  const [userEmail, setUserEmail] = useState('');
+  const [isInsightsUnlocked, setIsInsightsUnlocked] = useState(false);
   const router = useRouter();
   
   useEffect(() => {
     console.log("Dimension changed to:", selectedDimension);
   }, [selectedDimension]);
+
+  useEffect(() => {
+    // Check if user is logged in and get email
+    const email = localStorage.getItem('userEmail');
+    if (email) {
+      setUserEmail(email);
+    }
+    
+    // Check if insights are unlocked (you can adjust this logic as needed)
+    const hasSeenUnlock = localStorage.getItem('hasSeenInsightsUnlock');
+    if (hasSeenUnlock) {
+      setIsInsightsUnlocked(true);
+    }
+  }, []);
 
   // Cleanup audio when component unmounts
   useEffect(() => {
@@ -281,25 +299,10 @@ export default function PTLiteDashboard() {
   const maxVariance = 3;
 
   return (
-    <div className="min-h-screen bg-[#f5f0e6] p-4 sm:p-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-      <div className="relative w-full flex justify-center sm:justify-start mb-6 sm:mb-0">
-        <div 
-          className="relative w-[120px] h-[40px] sm:w-[150px] sm:h-[50px] sm:absolute sm:top-4 sm:left-4 cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={() => router.push('/')}
-        >
-          <Image 
-            src="/paperminds_logo_small.png" 
-            alt="Paperminds Logo" 
-            fill
-            sizes="(max-width: 640px) 120px, 150px"
-            priority
-            style={{ objectFit: 'contain' }}
-          />
-        </div>
-      </div>
-      <div className="mt-4 sm:mt-12"></div>
-      
-      <h1 className="text-2xl sm:text-3xl font-light text-center text-black mb-6 sm:mb-8" style={{ fontFamily: 'var(--font-serif)' }}>
+    <div className="min-h-screen bg-[#f5f0e6]" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+      <Navigation userEmail={userEmail} showInsights={isInsightsUnlocked} />
+      <div className="p-3 sm:p-4 lg:p-6">
+      <h1 className="text-2xl sm:text-3xl font-bold text-center text-black font-serif mb-6 sm:mb-8">
         CS Pre-test Light Dashboard
       </h1>
 
@@ -825,6 +828,9 @@ export default function PTLiteDashboard() {
             />
           );
         })}
+      </div>
+      
+        <Footer />
       </div>
     </div>
   );

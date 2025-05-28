@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Selector Mobile Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f9f5eb 0%, #f5f0e0 50%, #f9f5eb 100%);
+            font-family: system-ui, -apple-system, sans-serif;
+            -webkit-overflow-scrolling: touch;
+            overflow-x: hidden;
+        }
+        
+        .helvetica-title {
+            font-family: "Helvetica Neue", -apple-system, BlinkMacSystemFont, sans-serif !important;
+            font-weight: 800;
+            font-stretch: condensed;
+            letter-spacing: -0.02em;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-[#f9f5eb] via-[#f5f0e0] to-[#f9f5eb]">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="relative w-24 h-8 cursor-pointer hover:opacity-80 transition-opacity">
+                        <div class="w-full h-full bg-gray-300 rounded flex items-center justify-center text-xs">LOGO</div>
+                    </div>
+                </div>
+
+                <!-- Navigation Links - Hidden on mobile, shown on desktop -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <button class="flex items-center text-gray-900 hover:text-orange-600 transition-colors">Home</button>
+                    <button class="flex items-center text-gray-600 hover:text-orange-600 transition-colors">Studies</button>
+                    <button class="flex items-center text-gray-600 hover:text-orange-600 transition-colors">Insights</button>
+                    <button class="flex items-center text-gray-600 hover:text-orange-600 transition-colors">Settings</button>
+                </div>
+
+                <!-- User Info & Logout -->
+                <div class="flex items-center space-x-4">
+                    <span class="text-sm text-gray-700 hidden sm:inline">user@example.com</span>
+                    <button class="flex items-center text-gray-600 hover:text-red-600 transition-colors">
+                        <span class="w-4 h-4 mr-1">🚪</span>
+                        <span class="hidden sm:inline">Logout</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Welcome Section -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl sm:text-3xl md:text-4xl font-light text-gray-900 mb-4">
+                Welcome back, John!
+            </h1>
+            <p class="text-xl sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
+                Choose your dashboard to explore insights, run studies, or analyze emotional responses.
+            </p>
+            <div class="h-1 bg-gradient-to-r from-orange-400 to-amber-300 rounded-full mx-auto mt-4 w-32"></div>
+        </div>
+
+        <!-- Progress Section -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8 border border-gray-200">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 space-y-2 sm:space-y-0">
+                <h3 class="text-lg font-semibold text-gray-900">Progress to Pooled Insights</h3>
+                <span class="text-sm text-gray-600">3/5 studies completed</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-3 mb-2">
+                <div class="bg-gradient-to-r from-orange-500 to-amber-500 h-3 rounded-full" style="width: 60%"></div>
+            </div>
+            <p class="text-sm text-gray-600">
+                Complete 2 more studies to unlock cross-study analytics and market-wide patterns.
+            </p>
+        </div>
+
+        <!-- Two-Column Layout - Stack on mobile -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-8">
+            <!-- Left Side - Studies -->
+            <div>
+                <h2 class="text-2xl font-light text-gray-900 mb-6">Studies</h2>
+                <div class="space-y-6">
+                    <!-- Study Card 1 -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-md">
+                        <div class="flex items-start space-x-4 mb-4">
+                            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <span class="w-6 h-6 text-gray-600">💬</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h3 class="text-xl font-bold text-gray-900 mb-1 helvetica-title">Conversational Studies™</h3>
+                                <p class="text-gray-600 text-sm">Understand what really matters to consumers</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Sub-cards -->
+                        <div class="space-y-3 mb-4">
+                            <div class="bg-gray-50 rounded-lg p-3 flex items-center justify-between">
+                                <div class="min-w-0 flex-1">
+                                    <p class="font-medium text-gray-900 text-sm truncate">Lait Bio Study</p>
+                                    <p class="text-xs text-gray-500">Ends: 2025-06-15</p>
+                                </div>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium ml-2 flex-shrink-0">
+                                    active
+                                </span>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg p-3 flex items-center justify-between">
+                                <div class="min-w-0 flex-1">
+                                    <p class="font-medium text-gray-900 text-sm truncate">Product Research</p>
+                                    <p class="text-xs text-gray-500">Ends: 2025-05-20</p>
+                                </div>
+                                <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium ml-2 flex-shrink-0">
+                                    completed
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-4 rounded-lg font-medium transition-all border border-gray-300">
+                            View
+                        </button>
+                    </div>
+
+                    <!-- Study Card 2 -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-md">
+                        <div class="flex items-start space-x-4 mb-4">
+                            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <span class="w-6 h-6 text-gray-600">⚡</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h3 class="text-xl font-bold text-gray-900 mb-1 helvetica-title">PT Lite™</h3>
+                                <p class="text-gray-600 text-sm">Quick creative testing insights</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Sub-cards -->
+                        <div class="space-y-3 mb-4">
+                            <div class="bg-gray-50 rounded-lg p-3 flex items-center justify-between">
+                                <div class="min-w-0 flex-1">
+                                    <p class="font-medium text-gray-900 text-sm truncate">Volkswagen Campaign</p>
+                                    <p class="text-xs text-gray-500">Ends: 2025-06-10</p>
+                                </div>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium ml-2 flex-shrink-0">
+                                    active
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-4 rounded-lg font-medium transition-all border border-gray-300">
+                            View
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Ongoing Stations -->
+            <div>
+                <h2 class="text-2xl font-light text-gray-900 mb-6">Ongoing Stations</h2>
+                <div class="space-y-6">
+                    <!-- Station Card 1 -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-md">
+                        <div class="flex items-start space-x-4 mb-4">
+                            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <span class="w-6 h-6 text-gray-600">🏠</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h3 class="text-xl font-bold text-gray-900 mb-1 helvetica-title">Welcome Stations™</h3>
+                                <p class="text-gray-600 text-sm">Guide users' decisions and spark engagement.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Sub-cards -->
+                        <div class="space-y-3 mb-4">
+                            <div class="bg-gray-50 rounded-lg p-3 flex items-center justify-between">
+                                <div class="min-w-0 flex-1">
+                                    <p class="font-medium text-gray-900 text-sm truncate">Onboarding Flow</p>
+                                    <p class="text-xs text-gray-500">1250 participants</p>
+                                </div>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium ml-2 flex-shrink-0">
+                                    running
+                                </span>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg p-3 flex items-center justify-between">
+                                <div class="min-w-0 flex-1">
+                                    <p class="font-medium text-gray-900 text-sm truncate">Product Discovery</p>
+                                    <p class="text-xs text-gray-500">890 participants</p>
+                                </div>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium ml-2 flex-shrink-0">
+                                    running
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-4 rounded-lg font-medium transition-all border border-gray-300">
+                            View
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Button (for testing) -->
+        <div class="md:hidden fixed bottom-4 right-4">
+            <button class="bg-orange-500 text-white p-3 rounded-full shadow-lg">
+                <span class="text-xl">☰</span>
+            </button>
+        </div>
+    </div>
+</body>
+</html>

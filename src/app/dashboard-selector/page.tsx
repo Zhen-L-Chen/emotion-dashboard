@@ -153,7 +153,7 @@ export default function DashboardSelector() {
             {/* Logo */}
             <div className="flex items-center">
               <div 
-                className="relative w-24 h-8 cursor-pointer hover:opacity-80 transition-opacity"
+                className="relative w-20 h-6 sm:w-24 sm:h-8 cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={() => router.push('/')}
               >
                 <Image 
@@ -166,7 +166,7 @@ export default function DashboardSelector() {
               </div>
             </div>
 
-            {/* Navigation Links */}
+            {/* Navigation Links - Hidden on mobile */}
             <div className="hidden md:flex items-center space-x-8">
               <button className="flex items-center text-gray-900 hover:text-orange-600 transition-colors">
                 Home
@@ -187,15 +187,16 @@ export default function DashboardSelector() {
               </button>
             </div>
 
-            {/* User Info & Logout */}
-            <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-700">{userEmail}</span>
+            {/* User Info & Logout - Responsive */}
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              <span className="text-xs sm:text-sm text-gray-700 hidden sm:inline truncate max-w-32 md:max-w-none">{userEmail}</span>
               <button
                 onClick={handleLogout}
-                className="flex items-center text-gray-600 hover:text-red-600 transition-colors"
+                className="flex items-center text-gray-600 hover:text-red-600 transition-colors p-2 sm:p-1"
+                title="Logout"
               >
-                <LogOut className="w-4 h-4 mr-1" />
-                Logout
+                <LogOut className="w-4 h-4 sm:mr-1" />
+                <span className="hidden sm:inline">Logout</span>
               </button>
             </div>
           </div>
@@ -209,17 +210,17 @@ export default function DashboardSelector() {
           animate={{ opacity: 1, y: 0 }}
           className="bg-gradient-to-r from-green-500 to-emerald-500 text-white p-4"
         >
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between space-y-3 sm:space-y-0">
             <div className="flex items-center">
-              <TrendingUp className="w-6 h-6 mr-3" />
+              <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 flex-shrink-0" />
               <div>
-                <h3 className="font-bold">🎉 You've unlocked pooled insights from your data lake!</h3>
-                <p className="text-sm opacity-90">Access cross-study analytics and market-wide patterns</p>
+                <h3 className="font-bold text-sm sm:text-base">🎉 You've unlocked pooled insights from your data lake!</h3>
+                <p className="text-xs sm:text-sm opacity-90">Access cross-study analytics and market-wide patterns</p>
               </div>
             </div>
             <button
               onClick={() => setShowUnlockBanner(false)}
-              className="text-white hover:text-gray-200 transition-colors"
+              className="text-white hover:text-gray-200 transition-colors self-end sm:self-auto p-1"
             >
               ✕
             </button>
@@ -230,17 +231,17 @@ export default function DashboardSelector() {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Welcome Section */}
-        <div className="text-center mb-12 relative overflow-hidden">
-          {/* Decorative elements */}
+        <div className="text-center mb-8 sm:mb-12 relative overflow-hidden px-4">
+          {/* Decorative elements - Hidden on mobile for cleaner look */}
           <motion.div 
-            className="absolute w-24 h-24 rounded-full bg-gradient-to-r from-orange-200 to-amber-100 opacity-70 -z-10"
+            className="absolute w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-gradient-to-r from-orange-200 to-amber-100 opacity-70 -z-10 hidden sm:block"
             style={{ top: '-10px', left: '15%' }}
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 0.7 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           />
           <motion.div 
-            className="absolute w-32 h-32 rounded-full bg-gradient-to-r from-blue-100 to-teal-100 opacity-70 -z-10"
+            className="absolute w-20 h-20 sm:w-32 sm:h-32 rounded-full bg-gradient-to-r from-blue-100 to-teal-100 opacity-70 -z-10 hidden sm:block"
             style={{ bottom: '-15px', right: '20%' }}
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 0.7 }}
@@ -249,7 +250,7 @@ export default function DashboardSelector() {
           
           {/* Welcome text with staggered animation */}
           <div className="relative">
-            <h1 className="text-4xl font-light text-gray-900 mb-4 inline-block" style={{ fontFamily: 'var(--font-serif)' }}>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-light text-gray-900 mb-4 inline-block" style={{ fontFamily: 'var(--font-serif)' }}>
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -310,7 +311,7 @@ export default function DashboardSelector() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.7 }}
-            className="text-xl text-gray-600 max-w-2xl mx-auto"
+            className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-2"
           >
             Choose your dashboard to explore insights, run studies, or analyze emotional responses.
           </motion.p>
@@ -330,11 +331,11 @@ export default function DashboardSelector() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white rounded-xl shadow-lg p-6 mb-8 border border-gray-200"
+            className="bg-white rounded-xl shadow-lg p-4 sm:p-6 mb-6 sm:mb-8 border border-gray-200"
           >
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-900">Progress to Pooled Insights</h3>
-              <span className="text-sm text-gray-600">{TOTAL_STUDIES}/{INSIGHTS_UNLOCK_THRESHOLD} studies completed</span>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 space-y-2 sm:space-y-0">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900">Progress to Pooled Insights</h3>
+              <span className="text-xs sm:text-sm text-gray-600">{TOTAL_STUDIES}/{INSIGHTS_UNLOCK_THRESHOLD} studies completed</span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-3 mb-2">
               <motion.div
@@ -344,17 +345,17 @@ export default function DashboardSelector() {
                 className="bg-gradient-to-r from-orange-500 to-amber-500 h-3 rounded-full"
               />
             </div>
-            <p className="text-sm text-gray-600">
+            <p className="text-xs sm:text-sm text-gray-600">
               Complete {INSIGHTS_UNLOCK_THRESHOLD - TOTAL_STUDIES} more studies to unlock cross-study analytics and market-wide patterns.
             </p>
           </motion.div>
         )}
 
         {/* Two-Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 mb-6 sm:mb-8">
           {/* Left Side - Time-bound Products */}
           <div>
-            <h2 className="text-2xl font-light text-gray-900 mb-6">Studies</h2>
+            <h2 className="text-xl sm:text-2xl font-light text-gray-900 mb-4 sm:mb-6">Studies</h2>
             <div className="space-y-6">
               {timeBoundProducts.map((product, index) => {
                 const IconComponent = product.icon;
@@ -420,7 +421,7 @@ export default function DashboardSelector() {
 
           {/* Right Side - Ongoing Stations */}
           <div>
-            <h2 className="text-2xl font-light text-gray-900 mb-6">Ongoing Stations</h2>
+            <h2 className="text-xl sm:text-2xl font-light text-gray-900 mb-4 sm:mb-6">Ongoing Stations</h2>
             <div className="space-y-6">
               {ongoingStations.map((station, index) => {
                 const IconComponent = station.icon;
@@ -493,19 +494,19 @@ export default function DashboardSelector() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-gradient-to-r from-emerald-50 to-teal-50 border-2 border-emerald-200 rounded-xl shadow-lg p-8 text-center"
+            className="bg-gradient-to-r from-emerald-50 to-teal-50 border-2 border-emerald-200 rounded-xl shadow-lg p-6 sm:p-8 text-center"
           >
-            <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-4">
-              <TrendingUp className="w-8 h-8 text-white" />
+            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <TrendingUp className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">Pooled Insights</h3>
-            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Pooled Insights</h3>
+            <p className="text-sm sm:text-base text-gray-600 mb-6 max-w-2xl mx-auto px-2">
               Explore aggregated insights across all your studies. Discover recurring emotions, behavioral patterns, and market-wide trends.
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-3 px-8 rounded-lg font-medium hover:shadow-md transition-all"
+              className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-2 px-6 sm:py-3 sm:px-8 rounded-lg font-medium hover:shadow-md transition-all text-sm sm:text-base"
               onClick={() => router.push('/pooled-insights')}
             >
               → Explore Insights
