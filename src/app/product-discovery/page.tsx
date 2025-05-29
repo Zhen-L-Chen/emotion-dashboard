@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import DemoDashboard from '../components/DemoDashboard';
 import Navigation from '../components/Navigation';
+import Footer from '../components/Footer';
 
 export default function ProductDiscoveryPage() {
   const [userEmail, setUserEmail] = useState('');
@@ -31,7 +32,7 @@ export default function ProductDiscoveryPage() {
   }, [router]);
 
   return (
-    <div className="min-h-screen" style={{ 
+    <div className="min-h-screen flex flex-col" style={{ 
       background: 'linear-gradient(135deg, #f9f5eb 0%, #f5f0e0 50%, #f9f5eb 100%)'
     }}>
       <Navigation userEmail={userEmail} showInsights={isInsightsUnlocked} />
@@ -52,7 +53,11 @@ export default function ProductDiscoveryPage() {
       </div>
 
       {/* DemoDashboard Component */}
-      <DemoDashboard />
+      <div className="flex-1">
+        <DemoDashboard />
+      </div>
+      
+      <Footer />
     </div>
   );
 }
