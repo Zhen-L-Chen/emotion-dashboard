@@ -154,7 +154,7 @@ export default function DashboardSelector() {
             <div className="flex items-center">
               <div 
                 className="relative w-20 h-6 sm:w-24 sm:h-8 cursor-pointer hover:opacity-80 transition-opacity"
-                onClick={() => router.push('/')}
+                onClick={() => router.push('/dashboard-selector')}
               >
                 <Image 
                   src="/paperminds_logo_small.png" 

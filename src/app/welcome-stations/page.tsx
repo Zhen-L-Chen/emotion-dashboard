@@ -135,7 +135,10 @@ export default function WelcomeStations() {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex items-center">
-              <div className="relative w-24 h-8">
+              <button
+                onClick={() => router.push('/dashboard-selector')}
+                className="relative w-24 h-8 hover:opacity-80 transition-opacity"
+              >
                 <Image 
                   src="/paperminds_logo_small.png" 
                   alt="Paperminds Logo" 
@@ -143,7 +146,7 @@ export default function WelcomeStations() {
                   style={{ objectFit: 'contain' }}
                   priority
                 />
-              </div>
+              </button>
             </div>
 
             {/* Navigation Links */}
