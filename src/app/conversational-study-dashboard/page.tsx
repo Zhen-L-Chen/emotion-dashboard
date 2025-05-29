@@ -290,9 +290,9 @@ export default function ConversationalStudyDashboard() {
   const maxTension = 1;
 
   return (
-    <div className="min-h-screen bg-[#f5f0e6]" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+    <div className="min-h-screen bg-[#f5f0e6] flex flex-col" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
       <Navigation userEmail={userEmail} showInsights={isInsightsUnlocked} />
-      <div className="p-3 sm:p-4 lg:p-6">
+      <div className="flex-1 p-3 sm:p-4 lg:p-6">
       <h1 className="text-2xl sm:text-3xl font-bold text-center text-black font-serif mb-6 sm:mb-8">
         Thème conversationnel - lait bio du Québec
       </h1>
@@ -523,9 +523,9 @@ export default function ConversationalStudyDashboard() {
           );
         })}
       </div>
-      
-        <Footer />
       </div>
+      
+      <Footer />
     </div>
   );
 }
